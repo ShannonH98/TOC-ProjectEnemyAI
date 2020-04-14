@@ -19,7 +19,7 @@ public class EnemyAI : MonoBehaviour
     public Text stateText;
     public enum States { idle = 1 , attack = 2, runaway , chase, protect};
 
-    public float lookRadius = 3f;
+    public float lookRadius = 5f;
     public Transform target;
 
 
@@ -42,8 +42,8 @@ public class EnemyAI : MonoBehaviour
     
     private void Start()
     {
-      
-        
+        //currentState = 
+        stateText.text = "State: " + currentState;
     }
 
     
@@ -81,6 +81,8 @@ public class EnemyAI : MonoBehaviour
         {
             Idle();
         }
+
+        stateText.text = "State: " + currentState;
 
 
         timeBetweenShots -= Time.deltaTime;
