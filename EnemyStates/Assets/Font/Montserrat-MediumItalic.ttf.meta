@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f05dcd9aa137b0942a0135531e5caf5e
+guid: f072e219cb0142d488cab5a464f5a1b2
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,10 +8,11 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: VCR OSD Mono
+  fontName: Montserrat
   fontNames:
-  - VCR OSD Mono
-  fallbackFontReferences: []
+  - Montserrat
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: f3037a592acfec841b2e4e9f9d6385cb, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1
