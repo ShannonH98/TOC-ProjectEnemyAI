@@ -50,21 +50,24 @@ public class EnemyAI : MonoBehaviour
     private void Update()
     {
         float distance = Vector2.Distance(target.position, transform.position);
-        if (distance <= lookRadius)
+        if (distance <= lookRadius && PlayerMovement.instance.level < level)
         {
-            if(PlayerMovement.instance.level < level)
-            {
-                
-                Chase();
-            }
-            else if(PlayerMovement.instance.level > level)
-            {
-                
-                RunAway();
-            }
+            Debug.Log("Player is within range and i should attack");
+            currentState = EnemyState.chase;
+            Chase();
         }
-        else
+        
+       if(distance <= lookRadius && PlayerMovement.instance.level > level)
         {
+            Debug.Log("Player is within range but i should run");
+            currentState = EnemyState.runaway;
+            RunAway();
+        }
+     
+       if(distance >= lookRadius)
+        {
+            Debug.Log("Player not withing range");
+            currentState = EnemyState.idle;
             Idle();
         }
 
@@ -103,46 +106,35 @@ public class EnemyAI : MonoBehaviour
         {
             timeBetweenShots -= Time.deltaTime;
         }
-        
-
     }
 
     public void Chase()
     {
-        currentState = EnemyState.chase;
         if (Vector2.Distance(transform.position, player.position) > stoppingDistance)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
             Attack();
-        }
-        else
-        {
-            
         }
     }
 
     void RunAway()
     {     
         transform.position = Vector2.MoveTowards(transform.position, player.position, -speed * Time.deltaTime);
-        currentState = EnemyState.runaway;
     }
     
     void TrackTreasure()
     {
         transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
-        //Pass protect state to UI, somehow
+
         currentState = EnemyState.protect;
         if (PlayerMovement.instance.level > level)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.position, -speed * Time.deltaTime);
         }
-       
     }
 
     void Idle()
-    {
-        //if enemy is not moving then set state to idle
-        currentState = EnemyState.idle;
+    {        
         transform.position = transform.position;
     }
 
