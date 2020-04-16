@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed;
+    public float speed = 9;
 
     private Rigidbody2D rb;
     private Vector2 moveVelocity;
+
+    private Vector2 startLocation;
 
     public int level = 5;
 
@@ -18,6 +20,9 @@ public class PlayerMovement : MonoBehaviour
     {
         instance = this;
         rb = GetComponent<Rigidbody2D>();
+
+        //store the start locatiton
+        startLocation = transform.position;
     }
 
     // Update is called once per frame
@@ -35,9 +40,20 @@ public class PlayerMovement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Bullet"))
+
+        if(collision.gameObject.tag == "Bullet")
         {
-            Destroy(gameObject);
+            slowdown();
+        } 
+        else if (collision.CompareTag("Enemy"))
+        {
+            transform.position = startLocation;
         }
+    }
+
+
+    private void slowdown()
+    {     
+        this.speed--;
     }
 }

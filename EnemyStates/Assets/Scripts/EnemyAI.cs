@@ -19,7 +19,7 @@ public class EnemyAI : MonoBehaviour
     public Text stateText;
     public enum States { idle = 1 , attack = 2, runaway , chase, protect};
 
-    public float lookRadius = 5f;
+    public float lookRadius = 3f;
     public Transform target;
 
 
@@ -50,21 +50,31 @@ public class EnemyAI : MonoBehaviour
     private void Update()
     {
         float distance = Vector2.Distance(target.position, transform.position);
-        if (distance <= lookRadius && PlayerMovement.instance.level < level)
+
+        float outerView = (float)(lookRadius * 0.75) + lookRadius;
+
+        if (distance >= lookRadius && distance <= outerView && PlayerMovement.instance.level < level)
         {
             Debug.Log("Player is within range and i should attack");
             currentState = EnemyState.chase;
             Chase();
         }
-        
-       if(distance <= lookRadius && PlayerMovement.instance.level > level)
+
+        if (distance <= lookRadius && PlayerMovement.instance.level < level)
+        {
+            Debug.Log("Player is within range and i should attack");
+            currentState = EnemyState.attack;
+            Attack();
+        }
+
+        if (distance <= lookRadius && PlayerMovement.instance.level > level)
         {
             Debug.Log("Player is within range but i should run");
             currentState = EnemyState.runaway;
             RunAway();
         }
      
-       if(distance >= lookRadius)
+       if(distance >= outerView)
         {
             Debug.Log("Player not withing range");
             currentState = EnemyState.idle;
@@ -93,11 +103,16 @@ public class EnemyAI : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, lookRadius);
+
+
+        float outerView = (float)(lookRadius * 0.75) + lookRadius;
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, outerView);
     }
 
     void Attack()
     {
-        currentState = EnemyState.attack;
         if (timeBetweenShots <=0)
         {
             
@@ -115,7 +130,6 @@ public class EnemyAI : MonoBehaviour
         if (Vector2.Distance(transform.position, player.position) > stoppingDistance)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
-            Attack();
         }
     }
 
