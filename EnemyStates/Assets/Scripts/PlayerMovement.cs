@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(collision.CompareTag("Bullet"))
         {
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
     }
 }

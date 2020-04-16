@@ -5259,12 +5259,12 @@ PrefabInstance:
     - target: {fileID: 5096422731867824720, guid: b9f584667e7bc65449b2bd5d4942ba37,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.38
+      value: 1.44
       objectReference: {fileID: 0}
     - target: {fileID: 5096422731867824720, guid: b9f584667e7bc65449b2bd5d4942ba37,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.4
+      value: 2.22
       objectReference: {fileID: 0}
     - target: {fileID: 5096422731867824720, guid: b9f584667e7bc65449b2bd5d4942ba37,
         type: 3}
@@ -5360,7 +5360,7 @@ PrefabInstance:
     - target: {fileID: 5096422731867824734, guid: b9f584667e7bc65449b2bd5d4942ba37,
         type: 3}
       propertyPath: timeBetweenShots
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5096422731867824734, guid: b9f584667e7bc65449b2bd5d4942ba37,
         type: 3}
@@ -5375,7 +5375,7 @@ PrefabInstance:
     - target: {fileID: 5096422731867824734, guid: b9f584667e7bc65449b2bd5d4942ba37,
         type: 3}
       propertyPath: lookRadius
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5096422731867824734, guid: b9f584667e7bc65449b2bd5d4942ba37,
         type: 3}
@@ -5465,6 +5465,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.12}
   m_EdgeRadius: 0
+--- !u!50 &5096422729930649421
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5096422729930649418}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1001 &6890770911069260693
 PrefabInstance:
   m_ObjectHideFlags: 0
