@@ -17,7 +17,6 @@ public class EnemyAI : MonoBehaviour
 {
 
     public Text stateText;
-    public enum States { idle = 1 , attack = 2, runaway , chase, protect};
 
     public float lookRadius = 3f;
     public Transform target;
